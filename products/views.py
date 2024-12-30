@@ -48,8 +48,8 @@ def product_detail(request, product_id):
     # Filter out product images that have no image file
     product_images = Product_img.objects.filter(
         product=product,
-        image__isnull=False
-    ).exclude(image='')
+        product_image__isnull=False  # Changed from image to product_image
+    ).exclude(product_image='')
     
     related_products = Product.objects.filter(
         category=product.category
@@ -60,4 +60,4 @@ def product_detail(request, product_id):
         'product_images': product_images,
         'related_products': related_products,
     }
-    return render(request, 'products/product-detail.html', context)
+    return render(request, 'product-detail.html', context)

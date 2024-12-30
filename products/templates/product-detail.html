@@ -24,11 +24,12 @@
             <div class="row row-pb-lg product-detail-wrap">
                 <div class="col-sm-8">
                     <div class="owl-carousel">
+                        <!-- Main product image carousel -->
                         {% if product_images.exists %}
                             {% for image in product_images %}
                             <div class="item">
                                 <div class="product-entry border">
-                                    <img src="{{ image.image.url }}" 
+                                    <img src="{{ image.product_image.url }}" 
                                          class="img-fluid" 
                                          alt="{{ product.name }}">
                                 </div>
@@ -128,11 +129,16 @@
                         </div>
                     </div>
                     <div class="row">
+                        <!-- Related products section -->
                         {% for related in related_products %}
                         <div class="col-md-3 text-center">
                             <div class="product-entry border">
                                 <a href="{% url 'product_detail' related.id %}" class="prod-img">
-                                    <img src="{{ related.image.url }}" class="img-fluid" alt="{{ related.name }}">
+                                    {% if related.image %}
+                                        <img src="{{ related.image.url }}" class="img-fluid" alt="{{ related.name }}">
+                                    {% else %}
+                                        <img src="{% static 'client/images/default-product.jpg' %}" class="img-fluid" alt="{{ related.name }}">
+                                    {% endif %}
                                 </a>
                                 <div class="desc">
                                     <h2><a href="{% url 'product_detail' related.id %}">{{ related.name }}</a></h2>
