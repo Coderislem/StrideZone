@@ -1,0 +1,216 @@
+/* Modern Header & Navbar Styles */
+.colorlib-nav {
+    background: rgb(255, 255, 255);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    
+    width: 100%;
+    z-index: 1000;
+    height: 200px; /* Add fixed height */
+}
+
+/* Add spacing for content below fixed header */
+
+
+/* Specific spacing for breadcrumbs */
+
+
+#colorlib-logo a {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4e73df;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.top-menu {
+    padding: 15px 0;
+}
+
+.menu-1 ul {
+    margin: 0;
+    padding: 0;
+}
+
+.menu-1 ul li {
+    padding: 0 15px;
+}
+
+.menu-1 ul li a {
+    color: #333;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.menu-1 ul li a:hover,
+.menu-1 ul li.active a {
+    color: #4e73df;
+}
+
+.menu-1 ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #4e73df;
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.menu-1 ul li a:hover::after,
+.menu-1 ul li.active a::after {
+    width: 100%;
+}
+
+/* Hero Section */
+#colorlib-hero {
+    margin-top: 20px;
+}
+
+.flexslider {
+    border: none;
+}
+
+.flexslider .slides li {
+    height: 800px;
+    position: relative;
+}
+
+.flexslider .overlay {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.slider-text-inner {
+    padding: 50px;
+    /* background: rgba(255, 255, 255, 0.9); */
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.head-1 {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #4e73df;
+    margin-bottom: 10px;
+}
+
+.head-2 {
+    font-size: 3rem;
+    color: #333;
+}
+
+.head-3 {
+    font-size: 2.5rem;
+    color: #4e73df;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background: #4e73df;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #224abe;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+}
+
+/* Search Bar */
+.search-wrap {
+    position: relative;
+}
+
+.search-wrap .form-control {
+    border-radius: 30px;
+    padding: 10px 20px;
+    padding-right: 50px;
+    border: 2px solid #eee;
+}
+
+.search-wrap .submit-search {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 7px 12px;
+    border-radius: 50%;
+}
+
+/* Add to custom.css */
+.colorlib-product {
+    padding: 2em 0; /* Reduced from 90px to 32px (2em) */
+}
+
+/* If you need more specific adjustments */
+.colorlib-product .container {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+/* Adjust spacing for product grid */
+.colorlib-product .row-pb-md {
+    padding-bottom: 2em;
+}
+
+/* Adjust product entry spacing */
+.product-entry {
+    margin-bottom: 1.5em;
+}
+
+/* Search Results Typography */
+.colorlib-product h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #2d3436;
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.colorlib-product p {
+    font-family: 'Poppins', sans-serif;
+    color: #636e72;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Product Entry Typography */
+.product-entry .desc h2 {
+    margin: 15px 0 8px;
+}
+
+.product-entry .desc h2 a {
+    font-family: 'Poppins', sans-serif;
+    color: #2d3436;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.product-entry .desc h2 a:hover {
+    color: #4e73df;
+}
+
+.product-entry .price {
+    font-family: 'Poppins', sans-serif;
+    color: #4e73df;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Breadcrumb Typography */
+.bread {
+    font-family: 'Poppins', sans-serif;
+    color: #636e72;
+}
+
+.bread a {
+    color: #4e73df;
+}
+
+.bread span {
+    margin: 0 8px;
+}

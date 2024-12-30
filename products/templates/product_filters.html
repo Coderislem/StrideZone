@@ -1,0 +1,78 @@
+{% load static %}
+
+<div class="col-sm-12">
+    <div class="side border mb-1">
+        <h3>Brand</h3>
+        <ul>
+            {% for brand in brands %}
+            <li><a href="?brand={{ brand.slug }}{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.style %}&style={{ request.GET.style }}{% endif %}{% if request.GET.color %}&color={{ request.GET.color }}{% endif %}">{{ brand.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="side border mb-1">
+        <h3>Size/Width</h3>
+        <div class="block-26 mb-2">
+            <h4>Size</h4>
+            <ul>
+                {% for size in sizes %}
+                <li><a href="?size={{ size.value }}{% if request.GET.brand %}&brand={{ request.GET.brand }}{% endif %}{% if request.GET.style %}&style={{ request.GET.style }}{% endif %}{% if request.GET.color %}&color={{ request.GET.color }}{% endif %}">{{ size.value }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="block-26">
+            <h4>Width</h4>
+            <ul>
+                {% for width in widths %}
+                <li><a href="?width={{ width.value }}{% if request.GET.brand %}&brand={{ request.GET.brand }}{% endif %}{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}">{{ width.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="side border mb-1">
+        <h3>Style</h3>
+        <ul>
+            {% for style in styles %}
+            <li><a href="?style={{ style.slug }}{% if request.GET.brand %}&brand={{ request.GET.brand }}{% endif %}{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.color %}&color={{ request.GET.color }}{% endif %}">{{ style.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="side border mb-1">
+        <h3>Colors</h3>
+        <ul>
+            {% for color in colors %}
+            <li><a href="?color={{ color.slug }}{% if request.GET.brand %}&brand={{ request.GET.brand }}{% endif %}{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.style %}&style={{ request.GET.style }}{% endif %}">{{ color.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="side border mb-1">
+        <h3>Material</h3>
+        <ul>
+            {% for material in materials %}
+            <li><a href="?material={{ material.slug }}{% if request.GET.brand %}&brand={{ request.GET.brand }}{% endif %}{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}">{{ material.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="side border mb-1">
+        <h3>Technologies</h3>
+        <ul>
+            {% for tech in technologies %}
+            <li><a href="?tech={{ tech.slug }}{% if request.GET.brand %}&brand={{ request.GET.brand }}{% endif %}{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}">{{ tech.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
