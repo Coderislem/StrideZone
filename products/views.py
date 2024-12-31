@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .models import Product, Category, Product_img
+import os
+from django.contrib.auth.decorators import login_required
+from carts.models import Cart
 # Create your views here.
 
 
@@ -45,19 +48,30 @@ def search_products(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    # Filter out product images that have no image file
-    product_images = Product_img.objects.filter(
-        product=product,
-        product_image__isnull=False  # Changed from image to product_image
-    ).exclude(product_image='')
+    product_images = Product_img.objects.filter(product=product)
     
-    related_products = Product.objects.filter(
-        category=product.category
-    ).exclude(id=product.id)[:4]
+    # Debug prints
+    print("Product Images:")
+    for img in product_images:
+        print(f"Image URL: {img.product_image.url}")
+        print(f"Image Path: {img.product_image.path}")
+        print(f"Image exists: {os.path.exists(img.product_image.path)}")
+
+    related_products = Product.objects.filter(category=product.category).exclude(id=product.id)[:4]
     
     context = {
         'product': product,
         'product_images': product_images,
-        'related_products': related_products,
+        'related_products': related_products
     }
     return render(request, 'product-detail.html', context)
+
+
+@login_required
+def payment_view(request):
+    cart = Cart.objects.get(user=request.user)
+    context = {
+        'cart': cart,
+        'total': cart.total_price
+    }
+    return render(request, 'payment.html', context)

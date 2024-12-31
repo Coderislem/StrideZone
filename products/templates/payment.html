@@ -1,0 +1,111 @@
+<!-- templates/payment.html -->
+{% extends 'users/home.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="colorlib-product">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-header bg-gradient-primary text-white py-4">
+                        <h4 class="mb-0 font-weight-bold">Secure Payment</h4>
+                    </div>
+                    <div class="card-body p-5">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
+                        
+                        <div class="order-summary mb-5">
+                            <h5 class="text-primary mb-4">Order Summary</h5>
+                            <div class="p-4 bg-light rounded">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-muted">Subtotal</span>
+                                    <span>${{ cart.total_price }}</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-muted">Shipping</span>
+                                    <span>Free</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h5 mb-0">Total</span>
+                                    <span class="h5 mb-0">${{ cart.total_price }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form method="POST" id="payment-form">
+                            {% csrf_token %}
+                            <div class="form-group mb-4">
+                                <label class="text-muted mb-2">Card Holder Name</label>
+                                <input type="text" class="form-control form-control-lg" required>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label class="text-muted mb-2">Card Number</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-lg" maxlength="16" required 
+                                           pattern="\d{16}" title="Please enter a valid 16-digit card number">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-white">
+                                            <i class="fas fa-credit-card text-primary"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label class="text-muted mb-2">Expiry Date</label>
+                                        <input type="text" class="form-control form-control-lg" placeholder="MM/YY" 
+                                               pattern="\d{2}/\d{2}" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-4">
+                                        <label class="text-muted mb-2">CVV</label>
+                                        <input type="text" class="form-control form-control-lg" maxlength="3" 
+                                               pattern="\d{3}" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">
+                                <i class="fas fa-lock mr-2"></i> Pay ${{ cart.total_price }}
+                            </button>
+
+                            <div class="text-center mt-4">
+                                <p class="text-muted mb-0">
+                                    <small>
+                                        <i class="fas fa-shield-alt mr-1"></i>
+                                        Your payment information is secure
+                                    </small>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.getElementById('payment-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Here you would normally integrate with a payment gateway
+    alert('Payment processing would happen here');
+    window.location.href = "{% url 'home' %}";
+});
+</script>
+{% endblock %}

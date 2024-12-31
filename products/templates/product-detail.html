@@ -24,14 +24,16 @@
             <div class="row row-pb-lg product-detail-wrap">
                 <div class="col-sm-8">
                     <div class="owl-carousel">
-                        <!-- Main product image carousel -->
-                        {% if product_images.exists %}
+                        {% if product_images %}
                             {% for image in product_images %}
                             <div class="item">
                                 <div class="product-entry border">
+                                    <!-- Debug info -->
+                                    <!-- {{ image.product_image.url }} -->
                                     <img src="{{ image.product_image.url }}" 
                                          class="img-fluid" 
-                                         alt="{{ product.name }}">
+                                         alt="{{ product.name }}"
+                                         onerror="console.log('Error loading image: ' + this.src);">
                                 </div>
                             </div>
                             {% endfor %}
@@ -129,7 +131,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <!-- Related products section -->
                         {% for related in related_products %}
                         <div class="col-md-3 text-center">
                             <div class="product-entry border">
@@ -137,7 +138,7 @@
                                     {% if related.image %}
                                         <img src="{{ related.image.url }}" class="img-fluid" alt="{{ related.name }}">
                                     {% else %}
-                                        <img src="{% static 'client/images/default-product.jpg' %}" class="img-fluid" alt="{{ related.name }}">
+                                        <img src="{% static 'client/images/default_product.jpg' %}" class="img-fluid" alt="{{ related.name }}">
                                     {% endif %}
                                 </a>
                                 <div class="desc">
@@ -156,6 +157,16 @@
 {% endblock %}
 
 {% block extra_js %}
+<!-- Add before other scripts -->
+<script>
+    console.log('Checking images...');
+    document.querySelectorAll('img').forEach(img => {
+        console.log('Image src:', img.src);
+        img.onerror = function() {
+            console.error('Failed to load image:', this.src);
+        };
+    });
+</script>
 <script src="{% static 'client/js/jquery.min.js' %}"></script>
 <script src="{% static 'client/js/popper.min.js' %}"></script>
 <script src="{% static 'client/js/bootstrap.min.js' %}"></script>
@@ -168,4 +179,14 @@
 <script src="{% static 'client/js/bootstrap-datepicker.js' %}"></script>
 <script src="{% static 'client/js/jquery.stellar.min.js' %}"></script>
 <script src="{% static 'client/js/main.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            items:1
+        });
+    });
+</script>
 {% endblock %}

@@ -4,6 +4,9 @@ from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.decorators import login_required
 from carts.views import addCart_item
 from .forms import UserLoginForm,UserRegistrationForm, UserUpdateForm, ProfileUpdateForm
+from products.models import Product
+import random
+
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -47,7 +50,22 @@ def logout_view(request):
 
 
 def home(request):
-    return render(request,'users/home.html')
+    # Get all products
+    all_products = list(Product.objects.all())
+    
+    # Get 8 random products for Best Sellers section
+    best_sellers = random.sample(all_products, min(8, len(all_products)))
+    
+    # Get men's and women's featured products
+    men_products = [p for p in all_products if p.category.gender == 'man']
+    women_products = [p for p in all_products if p.category.gender == 'women']
+    
+    context = {
+        'best_sellers': best_sellers,
+        'men_products': random.sample(men_products, min(1, len(men_products))),
+        'women_products': random.sample(women_products, min(1, len(women_products)))
+    }
+    return render(request, 'users/home.html', context)
 
 
 @login_required

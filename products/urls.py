@@ -8,4 +8,5 @@ urlpatterns = [
     path('man/', views.man, name="man"),
     path('search/', views.search_products, name='search'),
     path('product/<int:product_id>/', views.product_detail, name='product_detail'),
+    path('payment/', views.payment_view, name='payment'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
