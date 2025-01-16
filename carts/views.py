@@ -6,6 +6,10 @@ from products.models import Product
 
 @login_required
 def addCart_item(request, product_id):
+    if request.method != 'POST':
+        messages.error(request, 'Invalid request method')
+        return redirect('home')
+        
     try:
         # Get or create cart for user
         cart, created = Cart.objects.get_or_create(user=request.user)
@@ -31,12 +35,19 @@ def addCart_item(request, product_id):
         # Update cart total
         cart.total_price = sum(item.price for item in cart.cart_item.all())
         cart.save()
-            
-        return redirect('man')  # Changed from 'man' to 'men' assuming that's your URL name
         
+        messages.success(request, 'Item added to cart successfully!')
+        
+        # Return to the same page where the request came from
+        return redirect(request.META.get('HTTP_REFERER', 'home'))
+        
+    except Product.DoesNotExist:
+        messages.error(request, 'Product not found')
+        return redirect('home')
     except Exception as e:
+        messages.error(request, 'Error adding item to cart')
         print(f"Error adding item to cart: {e}")
-        return redirect('man')
+        return redirect('home')
     
 
 

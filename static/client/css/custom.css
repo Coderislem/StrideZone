@@ -265,3 +265,135 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-
 }
+
+/* Product Card Styling */
+.product-entry {
+    background: #fff;
+    border-radius: 8px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border: none !important;
+}
+
+.product-entry:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-entry .prod-img {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.product-entry .prod-img img {
+    transition: all 0.5s ease;
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.product-entry:hover .prod-img img {
+    transform: scale(1.05);
+}
+
+.product-entry .desc {
+    padding: 20px;
+    background: #fff;
+}
+
+.product-entry .desc h2 {
+    margin: 0 0 10px 0;
+}
+
+.product-entry .desc h2 a {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.product-entry .desc h2 a:hover {
+    color: #4e73df;
+}
+
+.product-entry .desc .price {
+    color: #4e73df;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* Add to Cart Button Styling */
+.btn-addtocart {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: #4e73df;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-addtocart:hover {
+    background: #2e59d9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+}
+
+.btn-addtocart i {
+    margin-right: 8px;
+}
+
+/* Best Sellers Section Styling */
+.colorlib-heading h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.colorlib-heading h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: #4e73df;
+}
+
+/* Add loading state for add to cart */
+.add-to-cart-form.loading .btn-addtocart {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Success message styling */
+.cart-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 4px;
+    background: #4CAF50;
+    color: white;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.cart-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
