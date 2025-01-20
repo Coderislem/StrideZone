@@ -23,35 +23,38 @@
         <div class="container">
             <div class="row row-pb-lg product-detail-wrap">
                 <div class="col-sm-8">
+                    <!-- Debug info -->
+                    {% if DEBUG %}
+                    <div style="display: none;">
+                        <p>Number of images: {{ product_images|length }}</p>
+                        {% for image in product_images %}
+                        <p>Image URL: {{ image.product_image.url }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
                     <div class="owl-carousel">
                         {% if product_images %}
                             {% for image in product_images %}
                             <div class="item">
                                 <div class="product-entry border">
-                                    <!-- Debug info -->
-                                    <!-- {{ image.product_image.url }} -->
                                     <img src="{{ image.product_image.url }}" 
                                          class="img-fluid" 
                                          alt="{{ product.name }}"
-                                         onerror="console.log('Error loading image: ' + this.src);">
+                                         onerror="this.onerror=null; this.src='{% static 'client/images/default-product.jpg' %}'; console.log('Failed to load:', this.src);">
                                 </div>
                             </div>
                             {% endfor %}
-                        {% else %}
-                            <div class="item">
-                                <div class="product-entry border">
-                                    {% if product.image %}
-                                        <img src="{{ product.image.url }}" 
-                                             class="img-fluid" 
-                                             alt="{{ product.name }}">
-                                    {% else %}
-                                        <img src="{% static 'client/images/default-product.jpg' %}" 
-                                             class="img-fluid" 
-                                             alt="{{ product.name }}">
-                                    {% endif %}
-                                </div>
-                            </div>
                         {% endif %}
+                        <!-- Always show main product image as fallback -->
+                        <div class="item">
+                            <div class="product-entry border">
+                                <img src="{{ product.image.url }}" 
+                                     class="img-fluid" 
+                                     alt="{{ product.name }}"
+                                     onerror="this.onerror=null; this.src='{% static 'client/images/default-product.jpg' %}'; console.log('Failed to load:', this.src);">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -157,35 +160,42 @@
 {% endblock %}
 
 {% block extra_js %}
-<!-- Add before other scripts -->
+{{ block.super }}
 <script>
-    console.log('Checking images...');
-    document.querySelectorAll('img').forEach(img => {
-        console.log('Image src:', img.src);
-        img.onerror = function() {
-            console.error('Failed to load image:', this.src);
-        };
-    });
-</script>
-<script src="{% static 'client/js/jquery.min.js' %}"></script>
-<script src="{% static 'client/js/popper.min.js' %}"></script>
-<script src="{% static 'client/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'client/js/jquery.easing.1.3.js' %}"></script>
-<script src="{% static 'client/js/jquery.waypoints.min.js' %}"></script>
-<script src="{% static 'client/js/jquery.flexslider-min.js' %}"></script>
-<script src="{% static 'client/js/owl.carousel.min.js' %}"></script>
-<script src="{% static 'client/js/jquery.magnific-popup.min.js' %}"></script>
-<script src="{% static 'client/js/magnific-popup-options.js' %}"></script>
-<script src="{% static 'client/js/bootstrap-datepicker.js' %}"></script>
-<script src="{% static 'client/js/jquery.stellar.min.js' %}"></script>
-<script src="{% static 'client/js/main.js' %}"></script>
-<script>
+    // Debug information
+    console.log('Initializing carousel...');
+    
     $(document).ready(function(){
-        $('.owl-carousel').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            items:1
+        // Debug: Check if jQuery and owl carousel are loaded
+        console.log('jQuery loaded:', typeof jQuery !== 'undefined');
+        console.log('Owl Carousel loaded:', typeof $.fn.owlCarousel !== 'undefined');
+        
+        // Initialize carousel with debugging
+        try {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: true,
+                items: 1,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                onInitialized: function(e) {
+                    console.log('Carousel initialized successfully');
+                    console.log('Number of items:', e.item.count);
+                },
+                onInitializeFailed: function(e) {
+                    console.error('Carousel failed to initialize:', e);
+                }
+            });
+        } catch (error) {
+            console.error('Error initializing carousel:', error);
+        }
+        
+        // Check all images
+        $('.owl-carousel img').each(function() {
+            console.log('Image source:', $(this).attr('src'));
         });
     });
 </script>

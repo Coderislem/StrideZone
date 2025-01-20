@@ -1,0 +1,153 @@
+/* Dark Mode Colors */
+:root {
+    --dark-bg: #121212;
+    --dark-surface: #1e1e1e;
+    --dark-primary: #bb86fc;
+    --dark-secondary: #03dac6;
+    --dark-error: #cf6679;
+    --dark-text-primary: rgba(255, 255, 255, 0.87);
+    --dark-text-secondary: rgba(255, 255, 255, 0.60);
+    --dark-border: #333333;
+}
+
+/* General Dark Mode Styles */
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text-primary);
+}
+
+/* Header & Navigation */
+.dark-mode #colorlib-nav {
+    background: var(--dark-surface) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.dark-mode .nav-link {
+    color: var(--dark-text-primary) !important;
+}
+
+/* Product Cards */
+.dark-mode .product-entry {
+    background: var(--dark-surface);
+    border-color: var(--dark-border) !important;
+}
+
+.dark-mode .product-entry .desc h2 a {
+    color: var(--dark-text-primary);
+}
+
+.dark-mode .price {
+    color: var(--dark-secondary);
+}
+
+/* Product Detail Page */
+.dark-mode .breadcrumbs {
+    background: var(--dark-surface);
+    border-color: var(--dark-border);
+}
+
+.dark-mode .breadcrumbs .bread span a {
+    color: var(--dark-primary);
+}
+
+.dark-mode .product-desc {
+    background: var(--dark-surface);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.dark-mode .btn-primary {
+    background: var(--dark-primary);
+    border-color: var(--dark-primary);
+}
+
+.dark-mode .btn-primary:hover {
+    background: var(--dark-secondary);
+    border-color: var(--dark-secondary);
+}
+
+/* Tabs */
+.dark-mode .nav-pills .nav-link {
+    background: var(--dark-surface);
+    color: var(--dark-text-primary);
+}
+
+.dark-mode .nav-pills .nav-link.active {
+    background: var(--dark-primary);
+}
+
+.dark-mode .tab-pane {
+    background: var(--dark-surface);
+    border-color: var(--dark-border) !important;
+}
+
+/* Footer */
+.dark-mode #colorlib-footer {
+    background: var(--dark-surface);
+    border-top: 1px solid var(--dark-border);
+}
+
+.dark-mode .colorlib-footer-links a {
+    color: var(--dark-text-secondary);
+}
+
+/* Carousel */
+.dark-mode .owl-carousel .owl-nav button {
+    background: var(--dark-primary) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* Forms */
+.dark-mode input, 
+.dark-mode select, 
+.dark-mode textarea {
+    background: var(--dark-surface) !important;
+    border-color: var(--dark-border) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* Cart */
+.dark-mode .cart-list {
+    background: var(--dark-surface);
+}
+
+.dark-mode .cart-wrap {
+    border-color: var(--dark-border);
+}
+
+/* Loader */
+.dark-mode .colorlib-loader {
+    border-color: var(--dark-primary);
+}
+
+/* Buttons */
+.dark-mode .btn-addtocart {
+    background: var(--dark-primary);
+    color: var(--dark-text-primary);
+}
+
+.dark-mode .btn-addtocart:hover {
+    background: var(--dark-secondary);
+}
+
+/* Search */
+.dark-mode .search-wrap {
+    background: var(--dark-surface);
+}
+
+/* Alerts and Messages */
+.dark-mode .alert {
+    background: var(--dark-surface);
+    border-color: var(--dark-border);
+}
+
+/* Pagination */
+.dark-mode .pagination .page-link {
+    background: var(--dark-surface);
+    border-color: var(--dark-border);
+    color: var(--dark-text-primary);
+}
+
+.dark-mode .pagination .active .page-link {
+    background: var(--dark-primary);
+} 

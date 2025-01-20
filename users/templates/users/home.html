@@ -36,6 +36,7 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="{% static 'client/css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'client/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'client/css/dark-mode.css' %}">
 	</head>
 	<body>
 		
@@ -314,6 +315,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{% static 'client/js/bootstrap-datepicker.js' %}"></script>
     <script src="{% static 'client/js/jquery.stellar.min.js' %}"></script>
     <script src="{% static 'client/js/main.js' %}"></script>
+
+    <script>
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Dark mode toggle functionality
+        document.getElementById('darkModeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                localStorage.setItem('darkMode', null);
+            }
+        });
+    </script>
 
 	</body>
 </html>

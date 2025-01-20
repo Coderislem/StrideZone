@@ -437,3 +437,30 @@ button[type="submit"]:hover {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    z-index: 1000;
+}
+
+.dark-mode-toggle button {
+    background: transparent;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .dark-mode-toggle button {
+    border-color: var(--dark-primary);
+    color: var(--dark-primary);
+}
+
+.dark-mode-toggle button:hover {
+    transform: scale(1.1);
+}

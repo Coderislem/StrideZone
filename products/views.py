@@ -48,21 +48,30 @@ def search_products(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    product_images = Product_img.objects.filter(product=product)
+    product_images = Product_img.objects.filter(product=product).all()
     
-    # Debug prints
-    print("Product Images:")
+    # Enhanced debugging
+    print("\n=== Debug Information ===")
+    print(f"Product ID: {product_id}")
+    print(f"Product Name: {product.name}")
+    print(f"Main Product Image: {product.image.url if product.image else 'No main image'}")
+    print("\nProduct Additional Images:")
     for img in product_images:
-        print(f"Image URL: {img.product_image.url}")
-        print(f"Image Path: {img.product_image.path}")
-        print(f"Image exists: {os.path.exists(img.product_image.path)}")
-
+        try:
+            print(f"- Image ID: {img.id}")
+            print(f"- Image URL: {img.product_image.url}")
+            print(f"- Image Path: {img.product_image.path}")
+            print("---")
+        except Exception as e:
+            print(f"Error with image: {str(e)}")
+    
     related_products = Product.objects.filter(category=product.category).exclude(id=product.id)[:4]
     
     context = {
         'product': product,
         'product_images': product_images,
-        'related_products': related_products
+        'related_products': related_products,
+        'DEBUG': True  # Add this for template debugging
     }
     return render(request, 'product-detail.html', context)
 

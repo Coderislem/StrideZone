@@ -37,10 +37,11 @@ class Product(models.Model):
         return f'Product {self.name}'
 
 class Product_img(models.Model):
-    product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name='product_imgs')
-    product_image = models.ImageField(blank=True,upload_to="product_imgs/",null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_imgs')
+    product_image = models.ImageField(upload_to="product_imgs/", blank=True, null=True)
+
     def __str__(self):
-        return f'img for {self.product}'
+        return f'Image for {self.product.name}'
 
 
 class Stock(models.Model):
