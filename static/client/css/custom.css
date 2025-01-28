@@ -464,3 +464,23 @@ button[type="submit"]:hover {
 .dark-mode-toggle button:hover {
     transform: scale(1.1);
 }
+
+/* Menu Styles */
+.menu a {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 0 5px;
+    color: #000;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #f8f9fa;
+}
+
+.menu a.active {
+    background-color: #4e73df;
+    color: white;
+}

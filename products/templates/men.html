@@ -26,8 +26,11 @@
                     </div>
                     <div class="menu text-center">
                         <p>
+                            <a href="{% url 'man' %}" {% if not selected_category %}class="active"{% endif %}>All</a>
                             {% for category in categories %}
-                            <a href="">{{ category.name }}</a>
+                            <a href="?category={{ category.id }}" {% if selected_category == category.id|stringformat:"s" %}class="active"{% endif %}>
+                                {{ category.name }}
+                            </a>
                             {% endfor %}
                         </p>
                     </div>

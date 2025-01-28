@@ -8,21 +8,35 @@ from carts.models import Cart
 
 
 def women(request):
+    category_id = request.GET.get('category')
     products_women = Product.objects.filter(category__gender="women")
     categorys_women = Category.objects.filter(gender="women")
+    
+    # Filter by category if category_id is provided
+    if category_id:
+        products_women = products_women.filter(category_id=category_id)
+    
     context = {
         'products': products_women,
-        'categories': categorys_women
+        'categories': categorys_women,
+        'selected_category': category_id
     }
     return render(request, 'women.html', context)
 
 
 def man(request):
+    category_id = request.GET.get('category')
     products_man = Product.objects.filter(category__gender="man")
     category_man = Category.objects.filter(gender="man")
+    
+    # Filter by category if category_id is provided
+    if category_id:
+        products_man = products_man.filter(category_id=category_id)
+    
     context = {
         'products': products_man,
-        'categories': category_man
+        'categories': category_man,
+        'selected_category': category_id
     }
     return render(request, 'men.html', context)
 
